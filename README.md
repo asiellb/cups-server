@@ -1,4 +1,4 @@
-# Cups in Docker
+# Cups Print Server Docker
 
 The Docker image produced by this repo provides a docker container for CUPS configured to share an HP printer attached by USB.
 
@@ -42,4 +42,5 @@ The '%' character makes it a comment.
 
 ## Credits
 
-dave-burke/docker-cups
+[dave-burke/docker-cups](https://github.com/dave-burke/docker-cups)
+
