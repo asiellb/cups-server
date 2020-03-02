@@ -2,19 +2,17 @@
 
 The Docker image produced by this repo provides a docker container for CUPS configured to share an HP printer attached by USB.
 
-## Init
+# Init
 
-```bash
-# Build the container
-./build.sh
+- Using docker `docker run -d --privileged --restart=always -v /dev/bus/usb:/dev/bus/usb -v "/root/.cloudprint/":/root --name cupsgcp -p 631:631 asiellb/cups`
+- Using `docker-compose`
 
-# Run the container
-./run.sh
-```
+## Configuration
+
+ - Admin username and password `print:print`
+ - Register printer with Google Cloud Print (GCP) `cloudprint -c`
 
 ## Additional steps
-
-Run `docker exec -it cups passwd` to set the root password (necessary for authenticating to the web interface).
 
 Browse to `https://<host_url>:631` and add the printer.
 
@@ -23,12 +21,6 @@ Browse to `https://<host_url>:631` and add the printer.
 Add a printer with the following device URI:
 
 	ipp://<host_url>:631/printers/<your_printer_name>
-
-Make sure that the PPD file used by any local cups instance (e.g. `/etc/cups/ppd/<your_printer>.ppd`) has the following line commented out:
-
-	*%cupsFilter: "application/vnd.cups-raster 0 hpcups"
-
-The '%' character makes it a comment.
 
 ## Access from Windows
 
@@ -40,7 +32,8 @@ The '%' character makes it a comment.
 7. Choose the appropriate driver.
 8. (Optional) Print a test page.
 
-## Credits
+## Inspired By
 
 [dave-burke/docker-cups](https://github.com/dave-burke/docker-cups)
+[jaymoulin/docker-google-cloudprint](https://github.com/jaymoulin/docker-google-cloudprint)
 
