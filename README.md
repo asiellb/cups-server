@@ -34,6 +34,6 @@ Add a printer with the following device URI:
 
 ## Inspired By
 
-[dave-burke/docker-cups](https://github.com/dave-burke/docker-cups)
+[dave-burke/docker-cups](https://github.com/dave-burke/docker-cups)  
 [jaymoulin/docker-google-cloudprint](https://github.com/jaymoulin/docker-google-cloudprint)
 
