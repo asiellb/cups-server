@@ -42,8 +42,7 @@ WORKDIR /root
 # Expose port
 EXPOSE 631
 
-# Copy daemon and init default shell
-COPY daemon.sh /usr/bin/daemon
-CMD ["daemon"]
+# Default shell
+CMD ["/usr/sbin/cupsd", "-f"]
 
 
