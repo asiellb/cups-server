@@ -9,16 +9,23 @@ RUN apt-get install --quiet --assume-yes --allow-downgrades --allow-remove-essen
   whois \
   libcups2-dev \
   cups \
+  cups-pdf \
   cups-client \
   cups-bsd \
   cups-filters \
+  ghostscript \
   foomatic-db-compressed-ppds \
   printer-driver-all \
   printer-driver-hpcups \
   openprinting-ppds \
   hpijs-ppds \
   hp-ppd \
-  hplip
+  hplip \
+  inotify-tools \
+  libpng16-16 \
+  avahi-daemon \
+  python \
+  python-cups
 
 # Add user and disable sudo password checking
 RUN useradd \
@@ -39,10 +46,14 @@ RUN apt-get clean \
 
 WORKDIR /root
 
-# Expose port
 EXPOSE 631
 
-# Default shell
-CMD ["/usr/sbin/cupsd", "-f"]
+# Add scripts
+ADD scripts /
+RUN chmod +x /root/*
 
+#Run Script
+CMD ["/root/run_cups.sh"]
 
+# Baked-in config file changes
+RUN sed -i 's/.*enable\-dbus=.*/enable\-dbus\=no/' /etc/avahi/avahi-daemon.conf
